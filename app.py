@@ -1,23 +1,31 @@
-# items = [
-#     ("Product1", 10),
-#     ("Product2", 9),
-#     ("Product3", 15)
-# ]
+class Point:
+    default_color = "red"
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    @classmethod
+    def zero(cls):
+        return cls(0, 0)
+
+    def __str__(self):
+        return f"Point ({self.x}, {self.y})"
+
+    def draw(self):
+        print(f"Point ({self.x}, {self.y})")
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
+    def __gt__(self, other):
+        return self.x > other.x and self.y > other.y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
 
 
-# # def sort_item(item):
-# #     return item[1]
+point = Point(1, 2)
+other = Point(1, 2)
 
-
-# items.sort(key=lambda item: item[1])
-# print(items)
-
-
-try:
-    age = int(input("Age: "))
-    xfactor = 10 / age
-except (ValueError, ZeroDivisionError):
-    print("You didn't enter a valid age")
-else:
-    print("No exception were thrown")
-print("execution continue")
+print(point + other)
